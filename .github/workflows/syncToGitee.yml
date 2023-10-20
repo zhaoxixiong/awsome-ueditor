@@ -14,12 +14,20 @@ jobs:
       uses: Yikun/hub-mirror-action@master
       with:
         # 必选，需要同步的Github用户（源）
-        src: github/ueditor-awsome
+        src: github/zhaoxixiong
         # 必选，需要同步到的Gitee的用户（目的）
-        dst: gitee/ueditor-awsome
+        dst: gitee/QUIKER
         # 必选，Gitee公钥对应的私钥，https://gitee.com/profile/sshkeys
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
         # 必选，Gitee对应的用于创建仓库的token，https://gitee.com/profile/personal_access_tokens
         dst_token: ${{ secrets.GITEE_TOKEN }}
         # 直接取当前项目的仓库名
         static_list: ${{ github.event.repository.name }}
+        # 使用的 clone 方式（https 或者 ssh）
+        clone_style: 'ssh'
+        # 启用后会显示所有的执行命令
+        debug: true
+        # 强制同步，即强制覆盖目的仓库
+        force_update: true
+        # 超时设置，超时后会重试 git 操作
+        timeout: '600s'
